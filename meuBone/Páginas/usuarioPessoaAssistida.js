@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Modal} from 'react-native';
+import { useState } from 'react';
+import ModalAlteracoesRealizadas from '../Modal/modalAlteracoesRealizadas'
 
-export default function CadastroAcompanhante({navigation}) {
+export default function UsuarioPessoaAssistida({navigation}) {
+    const [modalVisible, setModalVisible] = useState(false)
 
+    function chamarModal(){
+      setModalVisible(true);
+    }
   return (
     <View style={styles.container}>
       <View style={{flex: 1.5, alignItems: 'center', justifyContent: 'center', alignItems: 'center', columnGap: 65,
       }}>
-        <Image style={styles.logo}  source={require('../Imagens/Logo-sem-fundo e sem letra 2.png')}></Image>
-      </View>
-      <View style={{flex: 1, alignItems: 'center', marginTop: '-8%'}}>
-        <Text style={styles.textoCadatro}>Cadastre-se:</Text>
+        <Image source={require('../Imagens/iconeAlterarFotoUsuario.png')}></Image>
       </View>
       <View style={{flex: 0.5, flexDirection: 'row', justifyContent: 'center', columnGap: 20}}>
       <TextInput style={{
@@ -54,15 +57,6 @@ export default function CadastroAcompanhante({navigation}) {
         placeholder='Email'
         placeholderTextColor = "white"
       />
-      <TextInput style={styles.input}  
-        placeholder='Usuário'
-        placeholderTextColor = "white"
-      />
-      <TextInput style={styles.input} 
-        placeholder='Senha'
-        placeholderTextColor = "white"
-        secureTextEntry={true}
-      />
       </View>
       <View style={{flex: 0.5, flexDirection: 'row',  alignItems: 'flex-end', justifyContent: 'center'}}>
         <TouchableOpacity style={{backgroundColor: '#333232',
@@ -77,13 +71,16 @@ export default function CadastroAcompanhante({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity style={{backgroundColor: '#232323',
                                   padding: 15,
-                                  paddingLeft: '16%',
-                                  paddingRight: '16%',}} 
-          onPress={() => navigation.navigate('CadastroPessoaAssistida')}>
+                                  paddingLeft: '20%',
+                                  paddingRight: '20%',}} 
+          onPress={chamarModal}>
           <Text style={{fontSize: 20, 
                         color: '#FFCF66'}}>
-            Confirmar
+            Salvar
           </Text>
+          <Modal visible={modalVisible} animationType='fade' transparent={true}> 
+            <ModalAlteracoesRealizadas fechar={() => setModalVisible(false)}/>
+          </Modal>
         </TouchableOpacity>
       </View>
     </View>
@@ -94,11 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#414141',
-  },
-  logo:{
-    marginTop: 40,
-    height: 100,
-    width: 120,
   },
   input: {
     color: 'white',
@@ -113,11 +105,5 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: 'white',
     marginBottom: '4%',
-  },
-  textoCadatro: {
-    marginTop: '5%',
-    color: '#FFCF66',
-    marginBottom: '15%',
-    fontSize: 20,
   },
 });

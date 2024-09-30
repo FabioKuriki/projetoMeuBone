@@ -1,16 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Modal } from 'react-native';
-import { useState } from 'react';
-
-import ModalEmConstrucao from '../Modal/modal';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from 'react-native';
 
 export default function Login({navigation}) {
-  const [modalVisible, setModalVisible] = useState(false)
-
-  function chamarModal(){
-    setModalVisible(true);
-  }
-
   return (
     <View style={styles.container}>
       <View style={{flex: 1.5, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', columnGap: 65,
@@ -34,13 +25,10 @@ export default function Login({navigation}) {
           placeholderTextColor = "white"
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.fundoBotao} onPress={chamarModal}>
+        <TouchableOpacity onPress={() => navigation.navigate('Gps')} style={styles.fundoBotao}>
           <Text style={styles.textoBotao}>
             Entrar
           </Text>
-          <Modal visible={modalVisible} animationType='fade' transparent={true}>
-            <ModalEmConstrucao fechar={() => setModalVisible(false)}/>
-          </Modal>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('CadastroAcompanhante')}>
           <Text style={styles.textoCadatro}>Cadastre-se</Text>
