@@ -53,6 +53,7 @@ export default function CadastroAcompanhante({navigation}) {
       <TextInput style={styles.input} 
         placeholder='Email'
         placeholderTextColor = "white"
+        keyboardType='email-address'
       />
       <TextInput style={styles.input}  
         placeholder='Usuário'

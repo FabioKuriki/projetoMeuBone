@@ -61,6 +61,7 @@ export default function CadastroPessoaAssistida({navigation}) {
       <TextInput style={styles.input} 
         placeholder='Email'
         placeholderTextColor = "white"
+        keyboardType='email-address'
       />
       </View>
       <View style={{flex: 0.5, flexDirection: 'row',  alignItems: 'flex-end', justifyContent: 'center'}}>
